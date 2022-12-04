@@ -10,6 +10,13 @@ import VisionKit
 
 struct ScannerView: UIViewControllerRepresentable {
     
+    typealias UIViewControllerType = VNDocumentCameraViewController
+    
+    private let completionHandler: ([String]?) -> Void
+    
+    init(completion: @escaping ([String]?) -> Void) {
+        self.completionHandler = completion
+    }
     
     final class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
         private let completionHandler: ([String]?) -> Void
@@ -44,13 +51,5 @@ struct ScannerView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {
         
-    }
-    
-    typealias UIViewControllerType = VNDocumentCameraViewController
-    
-    private let completionHandler: ([String]?) -> Void
-    
-    init(completion: @escaping ([String]?) -> Void) {
-        self.completionHandler = completion
     }
 }
